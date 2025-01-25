@@ -1,0 +1,7 @@
+res://scenes/boot/godot/godot_bootsplash_scene.tscn
+res://ui/theme.tres
+res://scenes/game_settings_scene.tscn
+res://scenes/main_menu_scene.tscn
+res://ui/components/game_logo.tscn
+res://i18n/translation.en.translation
+res://i18n/translation.de.translation

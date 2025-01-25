@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://g4qhvbvdm62w" path="res://scenes/game_settings_scene.tscn" id="3_dgs4d"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="3_kf1us"]
 [ext_resource type="PackedScene" uid="uid://b4blrdjthcxnn" path="res://ui/components/game_logo.tscn" id="4_fnufg"]
-[ext_resource type="AudioStream" uid="uid://dlchk3c1baiy8" path="res://music/corgie-title.ogg" id="6_drnm6"]
+[ext_resource type="Texture2D" uid="uid://da8xfymubsxxr" path="res://assets/images/initial_screen.jpg" id="6_a2u84"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ikbh"]
 font_size = 8
@@ -73,7 +73,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 visible = false
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_drnm6")
-autoplay = true
-bus = &"Music"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(306, 159)
+scale = Vector2(0.307292, 0.307292)
+texture = ExtResource("6_a2u84")
