@@ -1,15 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=8 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
+[ext_resource type="PackedScene" uid="uid://cqfbrf88rb515" path="res://scenes/bubble.tscn" id="2_4y67g"]
 [ext_resource type="Texture2D" uid="uid://dmelj2qgr8w7k" path="res://icon.svg" id="2_h1yxu"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_8o178"]
 [ext_resource type="Script" path="res://scenes/node_example.gd" id="3_a5686"]
+[ext_resource type="Script" path="res://scenes/timer.gd" id="7_r1ris"]
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
+bubble_scene = ExtResource("2_4y67g")
 
 [node name="NodeExample" type="Sprite2D" parent="." groups=["Persist"]]
+visible = false
 texture = ExtResource("2_h1yxu")
 script = ExtResource("3_a5686")
 
@@ -23,3 +27,14 @@ visible = false
 unique_name_in_owner = true
 process_mode = 2
 visible = false
+
+[node name="Bubble" parent="." instance=ExtResource("2_4y67g")]
+
+[node name="BubbleTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+script = ExtResource("7_r1ris")
+
+[connection signal="ready" from="." to="Bubble" method="_on_ready"]
+[connection signal="timeout" from="BubbleTimer" to="." method="_on_bubble_timer_timeout"]
+[connection signal="timeout" from="BubbleTimer" to="Bubble" method="_on_bubble_timer_timeout"]

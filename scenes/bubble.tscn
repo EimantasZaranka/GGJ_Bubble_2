@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://cqfbrf88rb515"]
+
+[ext_resource type="Script" path="res://scenes/bubble.gd" id="1_p1y6c"]
+[ext_resource type="Texture2D" uid="uid://32lwf8261hsd" path="res://assets/images/bubbles/Bubble_blue_new.png" id="2_u3fje"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eot82"]
+atlas = ExtResource("2_u3fje")
+region = Rect2(0, 0, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ictab"]
+atlas = ExtResource("2_u3fje")
+region = Rect2(350, 0, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jly48"]
+atlas = ExtResource("2_u3fje")
+region = Rect2(700, 0, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxk7t"]
+atlas = ExtResource("2_u3fje")
+region = Rect2(0, 350, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6ele"]
+atlas = ExtResource("2_u3fje")
+region = Rect2(350, 350, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1h0sa"]
+atlas = ExtResource("2_u3fje")
+region = Rect2(700, 350, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcnnf"]
+atlas = ExtResource("2_u3fje")
+region = Rect2(0, 700, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpwr7"]
+atlas = ExtResource("2_u3fje")
+region = Rect2(350, 700, 350, 350)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ijrhh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eot82")
+}],
+"loop": true,
+"name": &"bubble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ictab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jly48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxk7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6ele")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1h0sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcnnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpwr7")
+}],
+"loop": false,
+"name": &"pop",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g6snk"]
+radius = 63.0
+
+[node name="Bubble" type="Area2D"]
+position = Vector2(267, 371)
+script = ExtResource("1_p1y6c")
+
+[node name="Burbulo_img" type="AnimatedSprite2D" parent="."]
+position = Vector2(152, 183)
+scale = Vector2(0.457143, 0.457143)
+sprite_frames = SubResource("SpriteFrames_ijrhh")
+animation = &"bubble"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(152, 183)
+shape = SubResource("CircleShape2D_g6snk")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="ready" from="." to="." method="_on_ready"]
