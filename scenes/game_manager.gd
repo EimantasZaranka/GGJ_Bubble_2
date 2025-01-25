@@ -7,7 +7,7 @@ var score = 0
 
 @onready var game_timer = $GameTimer
 
-@export var time_left: int = 15
+var time_left: int = 35
 
 func _ready():
 	# Start the timer and connect the timeout signal
@@ -36,6 +36,12 @@ func _on_timer_timeout():
 	GlobalManager.score = score
 	get_tree().change_scene_to_file("res://scenes/end_game.tscn")
 
-func add_points(points):
+func add_points(points, seconds):
 	score += points
+	var new_time = game_timer.time_left + seconds
+	if new_time < 0:
+		#game_timer.start(0)
+		_on_timer_timeout()
+	else:
+		game_timer.start(new_time)
 	points_text.text = str(score)

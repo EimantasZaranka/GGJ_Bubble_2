@@ -11,8 +11,9 @@ extends Area2D
 
 
 var parent = get_parent()
+var type = null
 
-var bubble_type: String = parent.bubble_type  # Default type is "blue"
+var bubble_type: String = "blue" # Default type is "blue"
 
 var horizontal_speed: float  # Horizontal speed component
 var vertical_speed: float = 50  # Vertical speed for the bubble rising
@@ -61,7 +62,7 @@ func _on_area_entered(area: Area2D) -> void:
 	# Check if the other object is also a bubble (i.e., another Area2D node)
 	if area == self:
 		return
-
+	
 		# Calculate the vector from this bubble to the other bubble (collision normal)
 	var normal = (position - area.position).normalized()
 
@@ -87,24 +88,23 @@ func dead():
 	await default_burbulas.animation_finished
 	queue_free()
 
-func handle_bubble_effect():
-	
+func handle_bubble_effect(bubble_type):
 	match bubble_type:
 		"blue":
-			game_manager.add_points(10)
+			game_manager.add_points(10, 1)
 		"red":
-			game_manager.add_points(-10)
+			game_manager.add_points(-10, -10)
 		"green":
-			game_manager.add_points(10)
+			game_manager.add_points(10, 5)
 		"grey":
-			game_manager.add_points(10)
+			game_manager.add_points(4, -1)
 		"purple":
-			game_manager.add_points(10)
+			game_manager.add_points(25, 0)
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		handle_bubble_effect()
+		handle_bubble_effect(bubble_type)
 		death_sound.play()
 		velocity = Vector2(0, 0)
 		dead()

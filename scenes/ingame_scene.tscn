@@ -58,7 +58,6 @@ grey_bubble_scene = ExtResource("6_hgefs")
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_an6oa")
-time_left = 50
 
 [node name="GameTimer" type="Timer" parent="GameManager"]
 one_shot = true

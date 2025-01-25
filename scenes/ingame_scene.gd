@@ -51,19 +51,23 @@ func _on_bubble_timer_timeout() -> void:
 	var bubble_instance = null
 
 	if bubble_type == "normal":
-		bubble_instance = bubble_scene.instantiate()
+		bubble_instance = preload("res://scenes/bubble.tscn").instantiate()
 	elif bubble_type == "red":
-		bubble_instance = red_bubble_scene.instantiate()
+		bubble_instance = preload("res://scenes/red_bubble.tscn").instantiate()
 	elif bubble_type == "green":
-		bubble_instance = green_bubble_scene.instantiate()
+		bubble_instance = preload("res://scenes/bubble_green.tscn").instantiate()
 	elif bubble_type == "purple":
-		bubble_instance = purple_bubble_scene.instantiate()
+		bubble_instance = preload("res://scenes/purple_bubble.tscn").instantiate()
 	elif bubble_type == "grey":
-		bubble_instance = grey_bubble_scene.instantiate()
+		bubble_instance = preload("res://scenes/grey_bubble.tscn").instantiate()
+	
 
 	if bubble_instance:
 		# Set random position and add to scene
 		bubble_instance.position = Vector2(randf_range(0, get_viewport().size.x), get_viewport().size.y + 50)
+		#bubble_instance.set_meta("type_bubble", bubble_type)
+		#print(bubble_instance.get_meta("type_bubble"))
+		bubble_instance.bubble_type = bubble_type
 		add_child(bubble_instance)
 	
 	# Set a random horizontal position for the bubble
