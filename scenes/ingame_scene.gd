@@ -4,6 +4,7 @@ extends Node2D
 @onready var pause_overlay = %PauseOverlay
 @onready var bubble_spawner_timer: Timer = $BubbleTimer
 
+
 func _ready() -> void:
 	fade_overlay.visible = true
 	

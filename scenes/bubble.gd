@@ -6,6 +6,8 @@ extends Area2D
 @export var size_range: Vector2 = Vector2(0.5, 1.5)  # Range for bubble sizes (scale factor)
 @onready var default_burbulas = $Burbulo_img
 
+@onready var game_manager = $"../GameManager"
+@onready var death_sound = $AudioStreamPlayer2D
 
 var horizontal_speed: float  # Horizontal speed component
 var vertical_speed: float = 50  # Vertical speed for the bubble rising
@@ -90,8 +92,9 @@ func dead():
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		print("Bubble clicked")
+		game_manager.add_points(10)
+		death_sound.play()
 		velocity = Vector2(0, 0)
 		dead()
 		#queue_free()  # Destroy the bubble
-		get_tree().call_group("GameManager", "add_score", 10)  # Notify GameManager
+		#get_tree().call_group("GameManager", "add_score", 10)  # Notify GameManager

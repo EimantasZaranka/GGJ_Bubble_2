@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnfaf1im0mf2v"]
+
+[ext_resource type="FontFile" uid="uid://b2rif7yee1wtb" path="res://assets/fonts/Digory_Doodles_PS.ttf" id="1_15egq"]
+[ext_resource type="Script" path="res://scenes/end_game.gd" id="1_vhtre"]
+[ext_resource type="Texture2D" uid="uid://da8xfymubsxxr" path="res://assets/images/initial_screen.jpg" id="2_tciic"]
+[ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="4_3lia4"]
+[ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="5_ok6hh"]
+
+[node name="EndGame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_vhtre")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 156.0
+offset_right = 1127.0
+offset_bottom = 309.0
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("1_15egq")
+theme_override_font_sizes/font_size = 64
+text = "Bath time is over"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 295.0
+offset_right = 863.0
+offset_bottom = 410.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_15egq")
+theme_override_font_sizes/font_size = 48
+text = "Your score: x"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 569.0
+offset_top = 452.0
+offset_right = 743.0
+offset_bottom = 483.0
+text = "Return to main menu"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(682, 424)
+scale = Vector2(0.585937, 0.585938)
+texture = ExtResource("2_tciic")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="FadeOverlay" parent="UI" instance=ExtResource("4_3lia4")]
+unique_name_in_owner = true
+visible = false
+
+[node name="PauseOverlay" parent="UI" instance=ExtResource("5_ok6hh")]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
