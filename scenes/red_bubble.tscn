@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://7u8j8bnm10yj"]
+
+[ext_resource type="PackedScene" uid="uid://cqfbrf88rb515" path="res://scenes/bubble.tscn" id="1_dro06"]
+[ext_resource type="Texture2D" uid="uid://cil7cwiuunnnl" path="res://assets/images/bubbles/bubble_red_new.png" id="2_jfi5v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x32w"]
+atlas = ExtResource("2_jfi5v")
+region = Rect2(0, 0, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nknq"]
+atlas = ExtResource("2_jfi5v")
+region = Rect2(0, 350, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1rnw"]
+atlas = ExtResource("2_jfi5v")
+region = Rect2(350, 350, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t2oq"]
+atlas = ExtResource("2_jfi5v")
+region = Rect2(700, 350, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1chh8"]
+atlas = ExtResource("2_jfi5v")
+region = Rect2(0, 700, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyogn"]
+atlas = ExtResource("2_jfi5v")
+region = Rect2(350, 700, 350, 350)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_smvwd"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x32w")
+}],
+"loop": true,
+"name": &"bubble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nknq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1rnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7t2oq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1chh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyogn")
+}],
+"loop": false,
+"name": &"pop",
+"speed": 15.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_37bv0"]
+
+[node name="Bubble_red" instance=ExtResource("1_dro06")]
+position = Vector2(356, 442)
+
+[node name="Burbulo_img" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_smvwd")
+script = SubResource("GDScript_37bv0")
+
+[node name="CollisionShape2D" parent="." index="1"]
+script = SubResource("GDScript_37bv0")
+
+[node name="AudioStreamPlayer2D" parent="." index="2"]
+position = Vector2(158, -325)
+script = SubResource("GDScript_37bv0")

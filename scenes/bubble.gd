@@ -9,6 +9,11 @@ extends Area2D
 @onready var game_manager = $"../GameManager"
 @onready var death_sound = $AudioStreamPlayer2D
 
+
+var parent = get_parent()
+
+var bubble_type: String = parent.bubble_type  # Default type is "blue"
+
 var horizontal_speed: float  # Horizontal speed component
 var vertical_speed: float = 50  # Vertical speed for the bubble rising
 var direction_timer: float = 0.0  # Timer for direction changes
@@ -16,7 +21,6 @@ var direction_timer: float = 0.0  # Timer for direction changes
 # To store the velocity for bouncing off other bubbles
 var velocity: Vector2
 var bubble_radius: float  # Store the radius of the bubble for accurate collision
-var is_colliding: bool = false  # Flag to check if the bubble is colliding
 
 func _on_ready() -> void:
 	default_burbulas.play("bubble")
@@ -30,10 +34,7 @@ func _on_ready() -> void:
 	# Initial velocity for the bubble's movement
 	velocity = Vector2(horizontal_speed, -vertical_speed)
 
-	# Enable collision detection for the bubble
-	#area_entered.connect(_on_area_entered)
 
-	
 func _process(delta):
 	# Update direction change timer
 	direction_timer -= delta
@@ -50,8 +51,6 @@ func _process(delta):
 	if position.x <= 10 or position.x >= 1024:
 		velocity.x = -velocity.x  # Reverse horizontal direction
 
-	## Apply vertical movement (bubble rising)
-	#position.y -= speed * delta
 	# Remove the bubble if it goes off-screen at the top
 	if position.y < -20:
 		queue_free()
@@ -82,17 +81,30 @@ func _on_area_entered(area: Area2D) -> void:
 		velocity += Vector2(randf_range(-50, 50), randf_range(-50, 50))
 		area.velocity += Vector2(randf_range(-50, 50), randf_range(-50, 50))
 			
-			#is_colliding = true
 
 func dead():
 	default_burbulas.play("pop")
 	await default_burbulas.animation_finished
 	queue_free()
 
+func handle_bubble_effect():
+	
+	match bubble_type:
+		"blue":
+			game_manager.add_points(10)
+		"red":
+			game_manager.add_points(-10)
+		"green":
+			game_manager.add_points(10)
+		"grey":
+			game_manager.add_points(10)
+		"purple":
+			game_manager.add_points(10)
+
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		game_manager.add_points(10)
+		handle_bubble_effect()
 		death_sound.play()
 		velocity = Vector2(0, 0)
 		dead()

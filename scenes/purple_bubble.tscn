@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://dfbvb7jee55g4"]
+
+[ext_resource type="PackedScene" uid="uid://cqfbrf88rb515" path="res://scenes/bubble.tscn" id="1_8cvkh"]
+[ext_resource type="Texture2D" uid="uid://dthwht6sekvfu" path="res://assets/images/bubbles/bubble_purple_new.png" id="2_q77bs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yypvc"]
+atlas = ExtResource("2_q77bs")
+region = Rect2(0, 0, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smwth"]
+atlas = ExtResource("2_q77bs")
+region = Rect2(0, 350, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wifhr"]
+atlas = ExtResource("2_q77bs")
+region = Rect2(350, 350, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nuho"]
+atlas = ExtResource("2_q77bs")
+region = Rect2(700, 350, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40oss"]
+atlas = ExtResource("2_q77bs")
+region = Rect2(0, 700, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo6rj"]
+atlas = ExtResource("2_q77bs")
+region = Rect2(350, 700, 350, 350)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfiwp"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yypvc")
+}],
+"loop": true,
+"name": &"bubble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smwth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wifhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nuho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40oss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fo6rj")
+}],
+"loop": false,
+"name": &"pop",
+"speed": 15.0
+}]
+
+[node name="Purple_Bubble" instance=ExtResource("1_8cvkh")]
+position = Vector2(521, 719)
+
+[node name="Burbulo_img" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_hfiwp")
+animation = &"bubble"
+
+[node name="AudioStreamPlayer2D" parent="." index="2"]
+position = Vector2(6, 2)

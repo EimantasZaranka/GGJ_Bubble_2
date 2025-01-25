@@ -1,46 +1,39 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqfbrf88rb515"]
+[gd_scene load_steps=12 format=3 uid="uid://cqfbrf88rb515"]
 
 [ext_resource type="Script" path="res://scenes/bubble.gd" id="1_p1y6c"]
 [ext_resource type="Texture2D" uid="uid://32lwf8261hsd" path="res://assets/images/bubbles/Bubble_blue_new.png" id="2_u3fje"]
 [ext_resource type="AudioStream" uid="uid://jmwgkqrecf88" path="res://assets/sounds/effects/bubble-pop-283674.mp3" id="3_ts71w"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eot82"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5epxe"]
 atlas = ExtResource("2_u3fje")
 region = Rect2(0, 0, 350, 350)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ictab"]
-atlas = ExtResource("2_u3fje")
-region = Rect2(350, 0, 350, 350)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jly48"]
-atlas = ExtResource("2_u3fje")
-region = Rect2(700, 0, 350, 350)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pxk7t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p58b"]
 atlas = ExtResource("2_u3fje")
 region = Rect2(0, 350, 350, 350)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b6ele"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0agiq"]
 atlas = ExtResource("2_u3fje")
 region = Rect2(350, 350, 350, 350)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1h0sa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehf2s"]
 atlas = ExtResource("2_u3fje")
 region = Rect2(700, 350, 350, 350)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bcnnf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yclp5"]
 atlas = ExtResource("2_u3fje")
 region = Rect2(0, 700, 350, 350)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vpwr7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjoyn"]
 atlas = ExtResource("2_u3fje")
 region = Rect2(350, 700, 350, 350)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ijrhh"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_wwy65"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eot82")
+"texture": SubResource("AtlasTexture_5epxe")
 }],
 "loop": true,
 "name": &"bubble",
@@ -48,25 +41,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ictab")
+"texture": SubResource("AtlasTexture_2p58b")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jly48")
+"texture": SubResource("AtlasTexture_0agiq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pxk7t")
+"texture": SubResource("AtlasTexture_ehf2s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b6ele")
+"texture": SubResource("AtlasTexture_yclp5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1h0sa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bcnnf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vpwr7")
+"texture": SubResource("AtlasTexture_cjoyn")
 }],
 "loop": false,
 "name": &"pop",
@@ -77,20 +64,21 @@ animations = [{
 radius = 63.0
 
 [node name="Bubble" type="Area2D"]
-position = Vector2(267, 371)
+position = Vector2(320, 827)
 script = ExtResource("1_p1y6c")
 
 [node name="Burbulo_img" type="AnimatedSprite2D" parent="."]
 position = Vector2(152, 183)
 scale = Vector2(0.457143, 0.457143)
-sprite_frames = SubResource("SpriteFrames_ijrhh")
-animation = &"bubble"
+sprite_frames = SubResource("SpriteFrames_wwy65")
+animation = &"pop"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(152, 183)
 shape = SubResource("CircleShape2D_g6snk")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(4, -4)
 stream = ExtResource("3_ts71w")
 bus = &"Sound"
 

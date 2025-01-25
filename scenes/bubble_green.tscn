@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://dhnb6ikfl2khm"]
+
+[ext_resource type="PackedScene" uid="uid://cqfbrf88rb515" path="res://scenes/bubble.tscn" id="1_oxov8"]
+[ext_resource type="Texture2D" uid="uid://byqocbchhe87j" path="res://assets/images/bubbles/green_bubble_new.png" id="2_rrfmf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7cub"]
+atlas = ExtResource("2_rrfmf")
+region = Rect2(0, 0, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxcl3"]
+atlas = ExtResource("2_rrfmf")
+region = Rect2(0, 350, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eknkv"]
+atlas = ExtResource("2_rrfmf")
+region = Rect2(350, 350, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivemt"]
+atlas = ExtResource("2_rrfmf")
+region = Rect2(700, 350, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_to4l0"]
+atlas = ExtResource("2_rrfmf")
+region = Rect2(0, 700, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdajq"]
+atlas = ExtResource("2_rrfmf")
+region = Rect2(350, 700, 350, 350)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j646l"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7cub")
+}],
+"loop": true,
+"name": &"bubble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxcl3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eknkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivemt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to4l0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdajq")
+}],
+"loop": false,
+"name": &"pop",
+"speed": 15.0
+}]
+
+[node name="Bubble_green" instance=ExtResource("1_oxov8")]
+position = Vector2(381, 797)
+
+[node name="Burbulo_img" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_j646l")

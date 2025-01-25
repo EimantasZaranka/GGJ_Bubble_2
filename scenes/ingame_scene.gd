@@ -1,8 +1,26 @@
 extends Node2D
+#class_name InGameScene
 
 @onready var fade_overlay = %FadeOverlay
 @onready var pause_overlay = %PauseOverlay
 @onready var bubble_spawner_timer: Timer = $BubbleTimer
+
+@export var bubble_scene: PackedScene
+@export var red_bubble_scene: PackedScene
+@export var green_bubble_scene: PackedScene
+@export var purple_bubble_scene: PackedScene
+@export var grey_bubble_scene: PackedScene
+
+@export var spawn_interval: float = 1.0  # Time between spawns
+@export var bubble_chances: Dictionary = {
+	"blue": 0.6,  # 70% chance for blue bubbles
+	"red": 0.2,     # 20% chance for red bubbles
+	"green": 0.1,   # 10% chance for golden bubbles
+	"purple":0.05,
+	"grey":0.05,
+}
+
+@export var spawn_area_width: float = 1024  # Width of the area where bubbles can spawn
 
 
 func _ready() -> void:
@@ -12,6 +30,7 @@ func _ready() -> void:
 		SaveGame.load_game(get_tree())
 	
 	pause_overlay.game_exited.connect(_save_game)
+
 
 func _input(event) -> void:
 	if event.is_action_pressed("pause") and not pause_overlay.visible:
@@ -23,16 +42,44 @@ func _input(event) -> void:
 func _save_game() -> void:
 	SaveGame.save_game(get_tree())
 
-@export var bubble_scene: PackedScene
-@export var spawn_area_width: float = 1024  # Width of the area where bubbles can spawn
 
 func _on_bubble_timer_timeout() -> void:
 	# Instance a new bubble
-	var bubble = bubble_scene.instantiate()
+	#var bubble = bubble_scene.instantiate()
+	
+	var bubble_type = random_bubble_type()
+	var bubble_instance = null
+
+	if bubble_type == "normal":
+		bubble_instance = bubble_scene.instantiate()
+	elif bubble_type == "red":
+		bubble_instance = red_bubble_scene.instantiate()
+	elif bubble_type == "green":
+		bubble_instance = green_bubble_scene.instantiate()
+	elif bubble_type == "purple":
+		bubble_instance = purple_bubble_scene.instantiate()
+	elif bubble_type == "grey":
+		bubble_instance = grey_bubble_scene.instantiate()
+
+	if bubble_instance:
+		# Set random position and add to scene
+		bubble_instance.position = Vector2(randf_range(0, get_viewport().size.x), get_viewport().size.y + 50)
+		add_child(bubble_instance)
 	
 	# Set a random horizontal position for the bubble
-	var x_pos = randf_range(0, spawn_area_width)
-	bubble.position = Vector2(x_pos, get_viewport().size.y)
+	#var x_pos = randf_range(0, spawn_area_width)
+	#bubble.position = Vector2(x_pos, get_viewport().size.y)
 	
 	# Add the bubble to the scene
-	add_child(bubble)
+	#add_child(bubble)
+	
+func random_bubble_type() -> String:
+	var rand = randf()
+	var cumulative_chance = 0.0
+
+	for type in bubble_chances.keys():
+		cumulative_chance += bubble_chances[type]
+		if rand < cumulative_chance:
+			return type
+
+	return "blue"  # Default type if something goes wrong

@@ -7,7 +7,7 @@ var score = 0
 
 @onready var game_timer = $GameTimer
 
-var time_left: int = 300
+@export var time_left: int = 15
 
 func _ready():
 	# Start the timer and connect the timeout signal
