@@ -28,7 +28,7 @@ layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("2_efb4x")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Settings"
 
 [node name="GameSettings" parent="UI/CenterContainer/VBoxContainer" instance=ExtResource("2_qsqie")]
@@ -46,14 +46,14 @@ visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -2
-position = Vector2(306, 159)
-scale = Vector2(0.307292, 0.307292)
+position = Vector2(714.25, 471)
+scale = Vector2(0.601004, 0.605469)
 texture = ExtResource("6_6wl2y")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
-offset_left = -40.0
-offset_top = 98.0
-offset_right = 627.0
-offset_bottom = 236.0
+offset_left = 391.0
+offset_top = 333.0
+offset_right = 1058.0
+offset_bottom = 471.0
 color = Color(0, 0, 0, 0.45098)

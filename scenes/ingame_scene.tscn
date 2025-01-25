@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=16 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -7,6 +7,38 @@
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_8o178"]
 [ext_resource type="Script" path="res://scenes/node_example.gd" id="3_a5686"]
 [ext_resource type="Script" path="res://scenes/timer.gd" id="7_r1ris"]
+[ext_resource type="Texture2D" uid="uid://c7fgjltfhjm3n" path="res://assets/images/game_screen_without_water.png" id="8_3whq3"]
+[ext_resource type="Texture2D" uid="uid://chtfyx5ma5deb" path="res://assets/images/game_screen.jpg" id="8_y607f"]
+[ext_resource type="Shader" path="res://shaders/water.gdshader" id="9_043tu"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xnjlf"]
+noise_type = 3
+frequency = 0.003
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tqh43"]
+seamless = true
+seamless_blend_skirt = 0.312
+noise = SubResource("FastNoiseLite_xnjlf")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qp8rv"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fdbyv"]
+seamless = true
+seamless_blend_skirt = 0.594
+noise = SubResource("FastNoiseLite_qp8rv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lfwnh"]
+shader = ExtResource("9_043tu")
+shader_parameter/scroll1 = Vector2(0.05, 0.05)
+shader_parameter/scroll2 = Vector2(-0.05, -0.05)
+shader_parameter/distortion_strength = 0.4
+shader_parameter/transparency = 0.5
+shader_parameter/top_color = Color(0, 0.882353, 0.917647, 0.6)
+shader_parameter/light_start = 0.275
+shader_parameter/light_end = 0.4
+shader_parameter/noise1 = SubResource("NoiseTexture2D_tqh43")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_fdbyv")
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
@@ -34,6 +66,25 @@ visible = false
 wait_time = 0.5
 autostart = true
 script = ExtResource("7_r1ris")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(710.25, 411)
+scale = Vector2(0.555989, 0.55599)
+texture = ExtResource("8_y607f")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_lfwnh")
+position = Vector2(889, 656)
+scale = Vector2(10.0625, 3.25)
+texture = ExtResource("2_h1yxu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(705, 416)
+scale = Vector2(0.560059, 0.547038)
+texture = ExtResource("8_3whq3")
 
 [connection signal="ready" from="." to="Bubble" method="_on_ready"]
 [connection signal="timeout" from="BubbleTimer" to="." method="_on_bubble_timer_timeout"]

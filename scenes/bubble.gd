@@ -29,7 +29,7 @@ func _on_ready() -> void:
 	velocity = Vector2(horizontal_speed, -vertical_speed)
 
 	# Enable collision detection for the bubble
-	area_entered.connect(_on_area_entered)
+	#area_entered.connect(_on_area_entered)
 
 	
 func _process(delta):
