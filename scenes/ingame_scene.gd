@@ -11,11 +11,11 @@ extends Node2D
 @export var purple_bubble_scene: PackedScene
 @export var grey_bubble_scene: PackedScene
 
-@export var spawn_interval: float = 1.0  # Time between spawns
+@export var spawn_interval: float = 0.025  # Time between spawns
 @export var bubble_chances: Dictionary = {
 	"blue": 0.6,  # 70% chance for blue bubbles
-	"red": 0.2,     # 20% chance for red bubbles
-	"green": 0.1,   # 10% chance for golden bubbles
+	"red": 0.1,     # 20% chance for red bubbles
+	"green": 0.2,   # 10% chance for golden bubbles
 	"purple":0.05,
 	"grey":0.05,
 }
@@ -52,20 +52,30 @@ func _on_bubble_timer_timeout() -> void:
 
 	if bubble_type == "normal":
 		bubble_instance = preload("res://scenes/bubble.tscn").instantiate()
+		bubble_instance.time_addition = 1
+		bubble_instance.score_addition = 1
 	elif bubble_type == "red":
 		bubble_instance = preload("res://scenes/red_bubble.tscn").instantiate()
+		bubble_instance.time_addition = -10
+		bubble_instance.score_addition = -10
 	elif bubble_type == "green":
 		bubble_instance = preload("res://scenes/bubble_green.tscn").instantiate()
+		bubble_instance.time_addition = 5
+		bubble_instance.score_addition = 10
 	elif bubble_type == "purple":
 		bubble_instance = preload("res://scenes/purple_bubble.tscn").instantiate()
+		bubble_instance.time_addition = 0
+		bubble_instance.score_addition = 25
 	elif bubble_type == "grey":
 		bubble_instance = preload("res://scenes/grey_bubble.tscn").instantiate()
+		bubble_instance.time_addition = -1
+		bubble_instance.score_addition = 4
 	
 
 	if bubble_instance:
 		# Set random position and add to scene
-		bubble_instance.position = Vector2(randf_range(0, get_viewport().size.x), get_viewport().size.y + 50)
-		#bubble_instance.set_meta("type_bubble", bubble_type)
+		bubble_instance.position = Vector2(randf_range(300, get_viewport().size.x-400), get_viewport().size.y - 250)
+		#bubble_instance.set_meta("type_bubble", bubble_type
 		#print(bubble_instance.get_meta("type_bubble"))
 		bubble_instance.bubble_type = bubble_type
 		add_child(bubble_instance)

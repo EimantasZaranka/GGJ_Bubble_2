@@ -105,13 +105,12 @@ position = Vector2(705, 416)
 scale = Vector2(0.560059, 0.547038)
 texture = ExtResource("8_3whq3")
 
-[node name="Headeris" parent="." instance=ExtResource("11_wt25y")]
-z_index = 5
-position = Vector2(573, 24)
-scale = Vector2(0.560059, 0.547038)
-
 [node name="GlobalManager" type="Node" parent="."]
 script = ExtResource("13_q6is5")
+
+[node name="Headeris" parent="." instance=ExtResource("11_wt25y")]
+position = Vector2(472, 0)
+scale = Vector2(0.654278, 0.654278)
 
 [connection signal="ready" from="." to="Bubble" method="_on_ready"]
 [connection signal="timeout" from="BubbleTimer" to="." method="_on_bubble_timer_timeout"]

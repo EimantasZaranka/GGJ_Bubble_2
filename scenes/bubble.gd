@@ -14,6 +14,8 @@ var parent = get_parent()
 var type = null
 
 var bubble_type: String = "blue" # Default type is "blue"
+var time_addition: int = 0
+var score_addition: int = 0
 
 var horizontal_speed: float  # Horizontal speed component
 var vertical_speed: float = 50  # Vertical speed for the bubble rising

@@ -68,7 +68,7 @@ theme_override_constants/margin_top = 10
 
 [node name="Label" type="Label" parent="UI/CenterContainer/VBoxContainer/Credits"]
 layout_mode = 2
-text = "credits"
+text = "Music provided copyright free by @goodkidband"
 label_settings = SubResource("LabelSettings_2ikbh")
 horizontal_alignment = 1
 

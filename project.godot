@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="MyGame"
+config/name="Taking-a-Bath"
+config/version="0.0.1"
 run/main_scene="res://scenes/boot/godot/godot_bootsplash_scene.tscn"
 config/features=PackedStringArray("4.3")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/image="res://assets/icons/ltgj25_wlogo.png"
+config/icon="res://assets/icons/main_icon.png"
 
 [autoload]
 
