@@ -56,7 +56,7 @@ func _process(delta):
 
 	# Remove the bubble if it goes off-screen at the top
 	if position.y < -20:
-		queue_free()
+		dead()
 	#if is_colliding:
 		
 		

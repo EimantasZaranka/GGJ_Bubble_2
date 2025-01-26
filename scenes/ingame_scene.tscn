@@ -112,6 +112,10 @@ script = ExtResource("13_q6is5")
 position = Vector2(472, 0)
 scale = Vector2(0.654278, 0.654278)
 
+[node name="ScorePopup" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="ready" from="." to="Bubble" method="_on_ready"]
 [connection signal="timeout" from="BubbleTimer" to="." method="_on_bubble_timer_timeout"]
 [connection signal="timeout" from="BubbleTimer" to="Bubble" method="_on_bubble_timer_timeout"]
