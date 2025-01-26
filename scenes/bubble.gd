@@ -51,7 +51,7 @@ func _process(delta):
 	position += velocity * delta
 
 	# Bounce off the left and right edges of the screen
-	if position.x <= 10 or position.x >= 1024:
+	if position.x <= 1 or position.x >= 1023:
 		velocity.x = -velocity.x  # Reverse horizontal direction
 
 	# Remove the bubble if it goes off-screen at the top

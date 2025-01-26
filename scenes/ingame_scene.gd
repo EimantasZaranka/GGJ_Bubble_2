@@ -74,7 +74,8 @@ func _on_bubble_timer_timeout() -> void:
 
 	if bubble_instance:
 		# Set random position and add to scene
-		bubble_instance.position = Vector2(randf_range(300, get_viewport().size.x-400), get_viewport().size.y - 250)
+		#bubble_instance.position = Vector2(randf_range(300, get_viewport().size.x-400), get_viewport().size.y - 250)
+		bubble_instance.position = Vector2(randf_range(300, 1024),745)
 		#bubble_instance.set_meta("type_bubble", bubble_type
 		#print(bubble_instance.get_meta("type_bubble"))
 		bubble_instance.bubble_type = bubble_type
